@@ -1,5 +1,5 @@
 {
- "opdateret": "2026-10-22T09:22:40.766Z",
+ "opdateret": "2026-10-23T09:19:00.268Z",
  "traener": {
   "foedt": 1993,
   "hjemmebane": "Skive Trav",
@@ -117,19 +117,6 @@
    "placeringer": "2-2-2",
    "praemier": 120600,
    "rekord": "*17,7m 13,7am 14,8al"
-  },
-  {
-   "id": 656985,
-   "navn": "Mint",
-   "alder": 3,
-   "koen": "Vallak",
-   "foedt": "2023-03-20",
-   "far": "Broadway Hall (US)",
-   "mor": "Global Instinct (SE)",
-   "starter": 0,
-   "placeringer": "0-0-0",
-   "praemier": 0,
-   "rekord": ""
   },
   {
    "id": 656932,
@@ -2559,5 +2546,22 @@
    "praemie": 0
   }
  ],
- "kommende": []
+ "kommende": [
+  {
+   "dato": "2026-10-28",
+   "bane": "År",
+   "loeb": 4,
+   "hestId": 649374,
+   "hest": "Jacobite",
+   "kusk": "Kasper Foget"
+  },
+  {
+   "dato": "2026-10-28",
+   "bane": "År",
+   "loeb": 5,
+   "hestId": 655058,
+   "hest": "Starcatcher (SE)",
+   "kusk": "Kasper Foget"
+  }
+ ]
 }
