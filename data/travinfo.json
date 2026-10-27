@@ -1,5 +1,5 @@
 {
- "opdateret": "2026-10-26T10:03:09.732Z",
+ "opdateret": "2026-10-27T09:46:42.318Z",
  "traener": {
   "foedt": 1993,
   "hjemmebane": "Skive Trav",
@@ -2561,6 +2561,14 @@
    "loeb": 5,
    "hestId": 655058,
    "hest": "Starcatcher (SE)",
+   "kusk": "Kasper Foget"
+  },
+  {
+   "dato": "2026-10-30",
+   "bane": "Sk",
+   "loeb": 92,
+   "hestId": 656932,
+   "hest": "Murphy's Law",
    "kusk": "Kasper Foget"
   }
  ]
