@@ -1,5 +1,5 @@
 {
- "opdateret": "2026-10-28T10:32:16.921Z",
+ "opdateret": "2026-10-29T10:51:53.951Z",
  "traener": {
   "foedt": 1993,
   "hjemmebane": "Skive Trav",
@@ -9,12 +9,12 @@
  "traenerStatistik": [
   {
    "aar": 2026,
-   "starter": 46,
-   "sejre": 10,
+   "starter": 48,
+   "sejre": 11,
    "toer": 6,
    "treer": 6,
-   "procent": 22,
-   "praemier": 321050
+   "procent": 23,
+   "praemier": 331050
   },
   {
    "aar": 2025,
@@ -47,12 +47,12 @@
  "kuskStatistik": [
   {
    "aar": 2026,
-   "starter": 306,
-   "sejre": 40,
+   "starter": 311,
+   "sejre": 41,
    "toer": 25,
    "treer": 40,
    "procent": 13,
-   "praemier": 1048350
+   "praemier": 1060850
   },
   {
    "aar": 2025,
@@ -100,9 +100,9 @@
    "foedt": "2020-04-27",
    "far": "Great Challenger (US)",
    "mor": "Dejah Thoris (SE)",
-   "starter": 27,
-   "placeringer": "13-7-1",
-   "praemier": 222100,
+   "starter": 28,
+   "placeringer": "14-7-1",
+   "praemier": 232100,
    "rekord": "*16,9k 15,8m *13,9ak 14,4am"
   },
   {
@@ -269,7 +269,7 @@
    "foedt": "2019-05-03",
    "far": "Djali Boko (SE)",
    "mor": "Meaning Broline (SE)",
-   "starter": 42,
+   "starter": 43,
    "placeringer": "7-8-3",
    "praemier": 274770,
    "rekord": "17,8k *14,8m *15,3l 14,9ak 13,5am"
@@ -289,6 +289,30 @@
   }
  ],
  "resultater": [
+  {
+   "id": "838012-655058",
+   "dato": "2026-10-28",
+   "bane": "År",
+   "loeb": 5,
+   "hestId": 655058,
+   "hest": "Starcatcher (SE)",
+   "placering": "0",
+   "tid": "21,2g",
+   "distance": 2320,
+   "praemie": 0
+  },
+  {
+   "id": "838020-649374",
+   "dato": "2026-10-28",
+   "bane": "År",
+   "loeb": 4,
+   "hestId": 649374,
+   "hest": "Jacobite",
+   "placering": "1",
+   "tid": "14,4a",
+   "distance": 1800,
+   "praemie": 10000
+  },
   {
    "id": "837738-655862",
    "dato": "2026-10-11",
@@ -2547,22 +2571,6 @@
   }
  ],
  "kommende": [
-  {
-   "dato": "2026-10-28",
-   "bane": "År",
-   "loeb": 4,
-   "hestId": 649374,
-   "hest": "Jacobite",
-   "kusk": "Kasper Foget"
-  },
-  {
-   "dato": "2026-10-28",
-   "bane": "År",
-   "loeb": 5,
-   "hestId": 655058,
-   "hest": "Starcatcher (SE)",
-   "kusk": "Kasper Foget"
-  },
   {
    "dato": "2026-10-30",
    "bane": "Sk",
