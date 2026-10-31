@@ -144,6 +144,10 @@ function afled(data, idag) {
 
 // ---------- fælles dele ----------
 
+// Navnet som stort navnetræk: tyndt fornavn, kraftigt efternavn og en grøn prik. Hvert bogstav får sit nummer til animationen.
+const bogstaver = (ord, cls, fra) => `<span class="${cls}">${[...ord].map((b, i) => `<span style="--n:${fra + i}">${b}</span>`).join('')}</span>`;
+const navnetraek = () => `<span class="sr">${SITE.person}</span><span class="navnetraek" aria-hidden="true">${bogstaver('Kasper', 'navnetraek__tynd', 0)} ${bogstaver('Foget', 'navnetraek__fed', 6)}<i class="navnetraek__prik"></i></span>`;
+
 // Holdets eget mærke (sulky-silhuetten fra logoet) + navnet som tekst.
 const maerke = (lys = false, cls = '') => `<span class="maerke ${cls}"><img src="${R}assets/img/maerke${lys ? '-lys' : ''}.png" width="420" height="236" alt=""><span class="maerke__ord"><small>Team</small>Kasper Foget</span></span>`;
 
@@ -240,7 +244,7 @@ const bund = (o) => `
     <p>Billeder: Team Kasper Fogets Facebook-side · fotografer bl.a. Ole Hindby og Gorm Johansen (Gormfoto)</p>
     <p>© ${new Date().getFullYear()} ${SITE.navn}</p>
   </div>
-  <p class="bund__ord" aria-hidden="true">Kasper Foget</p>
+  <p class="bund__ord" aria-hidden="true"><span class="navnetraek__tynd">Kasper</span> <span class="navnetraek__fed">Foget</span></p>
 </footer>`;
 
 const organisation = () => ({
@@ -592,7 +596,7 @@ const forside = (o, data) => `
 <section class="hero">
   <div class="wrap">
     <p class="hero__meta"><span>Professionel travtræner</span><span>${SITE.stald}</span><span>Siden 1.12.2025</span></p>
-    <h1 class="hero__navn">Kasper Foget</h1>
+    <h1 class="hero__navn">${navnetraek()}</h1>
     <figure class="hero__foto">${billede('kingston', 'Kingston vinder Jydsk 4-årings Grand Prix 2025 med Kasper Foget i sulkyen', { sizes: '(min-width: 1320px) 1240px, 96vw', lazy: false })}<figcaption>Kingston vinder Jydsk 4-årings Grand Prix 2025 · Foto: Ole Hindby</figcaption></figure>
     <div class="hero__bund">
       <p class="hero__indled">Europamester for travjockeys, catchdriver i USA og siden 1. december 2025 selvstændig træner med ${o.heste.length} heste i Stald E på Skive Trav.</p>
