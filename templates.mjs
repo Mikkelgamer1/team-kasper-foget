@@ -50,7 +50,6 @@ const BILLEDER = {
   'boks': [0.75, 600, 1000],
   'portraet-brun': [0.579, 600, 1000],
   'portraet-moerk': [0.75, 600, 1000],
-  'boks-7': [0.567, 600, 1000],
 };
 // Hestekort: hest-id → [billede, billedtekst fra Facebook-opslaget]
 const HESTEKORT = {
@@ -488,22 +487,20 @@ const ydelser = (o) => `
       </li>
     </ul>`;
 
+// Billedgitteret: stor = 2×2 felter, hoej = 1×2, bred = 2×1. Rækkefølgen er lagt, så gitteret går op i fire spalter.
 const FOTOS = [
-  ['loeb-sort', 'Sort travhest i fuld fart på Skive Trav'],
-  ['portraet-brun', 'Brun travhest med grime foran stalden'],
-  ['loeb-oploeb', 'Hest nummer 6 i opløbet foran tribunen'],
-  ['staldgang', 'Travhest i staldgangen'],
-  ['loeb-7', 'Hest nummer 7 kommer i mål'],
-  ['portraet-moerk', 'Mørk travhest ved hegnet'],
-  ['loeb-skive', 'Sort hest i løb på Skive Trav · Foto: Gorm Johansen'],
-  ['boks', 'En ung hest i boksen'],
-  ['loeb-aften', 'Løb en aften på græsbanen'],
-  ['boks-7', 'Hest med startnummer 7 gjort klar i boksen'],
+  ['loeb-sort', 'Sort travhest i fuld fart på Skive Trav', 'stor'],
+  ['portraet-brun', 'Brun travhest med grime foran stalden', 'hoej'],
+  ['staldgang', 'Travhest i staldgangen', 'hoej'],
+  ['loeb-oploeb', 'Hest nummer 6 i opløbet foran tribunen', 'bred'],
+  ['loeb-7', 'Hest nummer 7 kommer i mål', 'bred'],
+  ['portraet-moerk', 'Mørk travhest ved hegnet', 'hoej'],
+  ['loeb-skive', 'Sort hest i løb på Skive Trav · Foto: Gorm Johansen', 'stor'],
+  ['boks', 'En ung hest i boksen', 'hoej'],
 ];
-// Galleriet er en vandret filmstrimmel, der kan scrolles og swipes.
-const galleri = (n = FOTOS.length) => `<div class="galleri" role="region" aria-label="Billeder fra stalden og banen" tabindex="0"><ul>${FOTOS.slice(0, n).map(([navn, alt]) => `
-      <li>${billede(navn, alt, { sizes: '(min-width: 901px) 32vw, 78vw' })}</li>`).join('')}
-    </ul></div>`;
+const galleri = (n = FOTOS.length) => `<ul class="galleri">${FOTOS.slice(0, n).map(([navn, alt, form], i) => `
+      <li class="galleri__${form}" data-vis style="--i:${i % 4}">${billede(navn, alt, { sizes: form === 'stor' || form === 'bred' ? '(min-width: 901px) 50vw, 92vw' : '(min-width: 901px) 25vw, 46vw' })}</li>`).join('')}
+    </ul>`;
 
 const banebjaelker = (banetal) => {
   const max = Math.max(1, ...banetal.map((b) => b.antal));
@@ -647,10 +644,10 @@ const forside = (o, data) => `
         ${etiket('Fra banen', ' data-vis')}
         <h2 data-vis style="--i:1">Hverdag og løbsdage.</h2>
       </div>
-      <p data-vis style="--i:2">Billeder fra Team Kasper Fogets Facebook-side. Træk eller scroll sidelæns.</p>
+      <p data-vis style="--i:2">Billeder fra Team Kasper Fogets Facebook-side.</p>
     </div>
+    ${galleri(5)}
   </div>
-  ${galleri()}
 </section>
 
 <section class="sek sek--is">
@@ -794,8 +791,8 @@ ${sidehoved({
       </div>
       <p data-vis style="--i:2">Billeder fra Team Kasper Fogets Facebook-side.</p>
     </div>
+    ${galleri()}
   </div>
-  ${galleri()}
 </section>
 
 <section class="sek">
