@@ -37,7 +37,8 @@ const VEJEN = [
 
 // Billeder fra Team Kasper Fogets Facebook-side: navn → [forhold, bredder…]
 const BILLEDER = {
-  'hero': [0.926, 700, 1100, 1600],
+  'hero': [1.503, 800, 1200, 1500],
+  'aften': [0.926, 700, 1100, 1600],
   'jacobite': [1.452, 800, 1400, 2048],
   'starcatcher': [1.502, 800, 1400],
   'kingston': [2.221, 800, 1400, 2048],
@@ -241,6 +242,7 @@ const bund = (o) => `
     <p>Billeder: Team Kasper Fogets Facebook-side · fotografer bl.a. Ole Hindby og Gorm Johansen (Gormfoto)</p>
     <p>© ${new Date().getFullYear()} ${SITE.navn}</p>
   </div>
+  <p class="bund__ord" aria-hidden="true">Kasper Foget</p>
 </footer>`;
 
 const organisation = () => ({
@@ -489,13 +491,13 @@ const ydelser = (o) => `
 
 // Billedgitteret: stor og bred = 2×2 felter (bred er de vandrette løbsbilleder), hoej = 1×2. Fjerde felt (valgfrit) styrer beskæringen. Rækkefølgen er lagt, så gitteret går op i fire spalter.
 const FOTOS = [
-  ['loeb-sort', 'Sort travhest i fuld fart på Skive Trav', 'stor'],
+  ['loeb-skive', 'Sort hest i løb på Skive Trav · Foto: Gorm Johansen', 'stor'],
   ['portraet-brun', 'Brun travhest med grime foran stalden', 'hoej'],
   ['staldgang', 'Travhest i staldgangen', 'hoej'],
   ['loeb-oploeb', 'Hest nummer 6 i opløbet foran tribunen', 'bred'],
   ['loeb-7', 'Hest nummer 7 kommer i mål', 'bred', '50% 8%'],
   ['portraet-moerk', 'Mørk travhest ved hegnet', 'hoej'],
-  ['loeb-skive', 'Sort hest i løb på Skive Trav · Foto: Gorm Johansen', 'stor'],
+  ['loeb-sort', 'Sort travhest i fuld fart på Skive Trav', 'stor'],
   ['boks', 'En ung hest i boksen', 'hoej'],
 ];
 const galleri = (n = FOTOS.length) => `<ul class="galleri">${FOTOS.slice(0, n).map(([navn, alt, form, pos], i) => `
@@ -571,7 +573,7 @@ const forside = (o, data) => `
 <section class="hero">
   <div class="wrap">
     <div class="hero__kort">
-      <figure class="hero__foto">${billede('hero', 'Travløb i aftensol på Skive Trav', { sizes: '(min-width: 901px) 48vw, 96vw', lazy: false })}</figure>
+      <figure class="hero__foto">${billede('hero', 'Sort travhest i fuld fart mod kameraet på Skive Trav', { sizes: '(min-width: 901px) 48vw, 96vw', lazy: false })}</figure>
       <div class="hero__tekst">
         ${etiket('Professionel travtræner · Skive Trav')}
         <h1>Kasper Foget</h1>
@@ -600,9 +602,22 @@ const forside = (o, data) => `
       <div class="bento__felt" data-vis style="--i:2"><b>${nf(o.saeson.praemier)}<small>kr.</small></b><span>indkørt</span></div>
       <div class="bento__felt bento__felt--groen" data-vis style="--i:3"><b>${o.kusk.sejre}</b><span>sejre som kusk på ${o.kusk.starter} starter</span></div>
       <div class="bento__felt bento__felt--mint" data-vis style="--i:4"><b>${o.heste.length}</b><span>heste i Stald E – ${o.ustartede.length} unge på vej</span></div>
-      <figure class="bento__foto" data-vis style="--i:2">${billede('jacobite', 'Jacobite i løb med Kasper Foget i sulkyen', { sizes: '(min-width: 901px) 50vw, 92vw' })}<figcaption>Jacobite · Foto: Ole Hindby</figcaption></figure>
+      <figure class="bento__foto" data-vis style="--i:2">${billede('loeb-7', 'Hest og kusk med buketten efter en sejr', { sizes: '(min-width: 901px) 50vw, 92vw' })}</figure>
       <div class="bento__felt bento__felt--moerk" data-vis style="--i:3"><span>Næste start</span>${o.kommende.length ? `<b class="bento__hest">${esc(o.kommende[0].hest)}</b><span>${ugedag(o.kommende[0].dato)} ${kortDato(o.kommende[0].dato)} · ${esc(bane(o.kommende[0].bane))}</span>` : '<b class="bento__hest">Ingen startmeldte</b><span>Nye startlister på Travinfo</span>'}</div>
       <a class="bento__felt bento__felt--link" href="${R}om-kasper/" data-vis style="--i:4"><span>Historien</span><b class="bento__hest">Fra Skive til USA – og hjem igen</b><span class="bento__pil">Læs om Kasper ${pil}</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="sek sek--top0">
+  <div class="wrap">
+    <div class="citat">
+      <figure class="citat__foto" data-vis>${billede('aften', 'Travløb i aftensol på Skive Trav', { sizes: '(min-width: 901px) 40vw, 92vw' })}</figure>
+      <blockquote class="citat__tekst" data-vis style="--i:1">
+        <p>»Hvis ikke jeg havde haft tiden i USA, så ville jeg ikke være den, jeg er i dag.«</p>
+        <footer><b>${SITE.person}</b><span>til travservice.dk, oktober 2025</span></footer>
+        <p class="valg">${link('om-kasper/', 'Læs hele historien', 'link--lys')}</p>
+      </blockquote>
     </div>
   </div>
 </section>
@@ -646,7 +661,7 @@ const forside = (o, data) => `
       </div>
       <p data-vis style="--i:2">Billeder fra Team Kasper Fogets Facebook-side.</p>
     </div>
-    ${galleri(5)}
+    ${galleri(3)}
   </div>
 </section>
 
