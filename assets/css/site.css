@@ -217,14 +217,20 @@ h3 { font-size: 1.2rem; letter-spacing: -.02em; line-height: 1.15; }
 .hestekort dl div:nth-child(2) dd { color: var(--mint); }
 .hestekort small { display: block; margin-top: 14px; font: 500 .7rem var(--mono); color: var(--lys-daemp); }
 
-.profiler { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+.profiler { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.profiler > * { flex: 0 1 calc((100% - 28px) / 3); }
 .profil { display: flex; flex-direction: column; padding: 24px 26px; border-radius: var(--r); box-shadow: inset 0 0 0 1px var(--lys-linje); transition: box-shadow .3s, background .3s; }
 .profil:hover { background: var(--moerk2); }
 .profil h3 { font-size: 1.4rem; color: #fff; }
 .sek--moerk .profil p { margin-top: 4px; font-size: .84rem; color: var(--lys-daemp); }
 .profil dl { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 12px; margin-top: 18px; }
 .profil dd { margin-top: 4px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.profil__ud { margin-top: 16px; font: 500 .74rem var(--mono); color: var(--mint); }
+.profil__ud { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font: 500 .74rem var(--mono); color: var(--mint); }
+.profil--vej { background: var(--groen); box-shadow: none; }
+.profil--vej:hover { background: var(--groen-moerk); }
+.sek--moerk .profil--vej p { color: rgba(255, 255, 255, .8); }
+.sek--moerk .profil--vej .profil__navne { margin-top: 10px; font-size: .9rem; line-height: 1.55; color: #fff; }
+.profil--vej .profil__ud { margin-top: auto; padding-top: 16px; color: #fff; }
 
 /* Galleri: fast billedgitter */
 .galleri { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(150px, 15vw, 230px); grid-auto-flow: dense; gap: 12px; }
@@ -483,6 +489,7 @@ html:not(.js) .fb { display: none; }
   .hero__foto { aspect-ratio: 4 / 3; }
   .hero__foto img { object-position: 58% 50%; }
   .hero__bund, .cta__bund { grid-template-columns: 1fr; }
+  .profiler > * { flex-basis: calc((100% - 14px) / 2); }
   .duo, .resgitter, .tabeller, .artikel, .partnere, .foelg, .sekhoved, .sidehoved__bund, .hestekort { grid-template-columns: 1fr; }
   .ydelser { grid-template-columns: 1fr; }
   .ydelser__nr { margin-bottom: 24px; }
@@ -504,6 +511,7 @@ html:not(.js) .fb { display: none; }
   .tal__felt b { font-size: 2.2rem; }
   .tal__felt--stor b { font-size: 6.4rem; }
   .hestekort dl { grid-template-columns: repeat(2, auto); justify-content: start; gap: 12px 32px; }
+  .profiler > * { flex-basis: 100%; }
   .kpi { grid-template-columns: repeat(2, 1fr); }
   .galleri { grid-template-columns: 1fr 1fr; grid-auto-rows: 38vw; gap: 10px; }
   .chips li { padding: 12px 16px; }

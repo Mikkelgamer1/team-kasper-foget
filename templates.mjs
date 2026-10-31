@@ -636,7 +636,13 @@ ${historie()}
       <p data-vis style="--i:2">${o.heste.length} heste på træningslisten – ${o.loebsheste.length} har været til start, og ${o.ustartede.length} unge heste er på vej.</p>
     </div>
     ${o.kortheste.length ? hestekort(o.kortheste) : ''}
-    <div class="profiler">${o.loebsheste.filter((h) => !HESTEKORT[h.id]).map(profilkort).join('')}
+    <div class="profiler">${o.loebsheste.filter((h) => !HESTEKORT[h.id]).map(profilkort).join('')}${o.ustartede.length ? `
+      <a class="profil profil--vej" href="${R}heste/" data-vis style="--i:2">
+        <h3>${o.ustartede.length} på vej</h3>
+        <p>Unge heste, der endnu ikke har været til start:</p>
+        <p class="profil__navne">${o.ustartede.map((h) => esc(h.navn)).join(' · ')}</p>
+        <span class="profil__ud">Hele træningslisten ${pil}</span>
+      </a>` : ''}
     </div>
     <p class="midt" data-vis>${knap('heste/', `Hele træningslisten (${o.heste.length})`, 'knap--hvid')}</p>
   </div>
