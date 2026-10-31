@@ -487,7 +487,7 @@ const ydelser = (o) => `
       </li>
     </ul>`;
 
-// Billedgitteret: stor = 2×2 felter, hoej = 1×2, bred = 2×1. Fjerde felt (valgfrit) styrer beskæringen. Rækkefølgen er lagt, så gitteret går op i fire spalter.
+// Billedgitteret: stor og bred = 2×2 felter (bred er de vandrette løbsbilleder), hoej = 1×2. Fjerde felt (valgfrit) styrer beskæringen. Rækkefølgen er lagt, så gitteret går op i fire spalter.
 const FOTOS = [
   ['loeb-sort', 'Sort travhest i fuld fart på Skive Trav', 'stor'],
   ['portraet-brun', 'Brun travhest med grime foran stalden', 'hoej'],
