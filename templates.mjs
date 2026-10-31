@@ -15,7 +15,7 @@ export const SITE = {
   by: 'Skive',
   intro: ['Passion for travsport', 'Erfaring fra Danmark og USA', 'Fokus på kvalitet, udvikling og resultater'], // Facebook-sidens introduktion
   facebook: 'https://www.facebook.com/profile.php?id=61582669813688', // opslag vises som kort, når FB_SIDE/FB_TOKEN er sat i GitHub
-  instagram: '', // ← instagram.com/kasperfoget findes – bekræft, om den skal med
+  instagram: 'https://www.instagram.com/team_kasper_foget/',
   travinfo: 'https://travinfo.dk/licenseholder-tabs/504440',
   hjemmebane: 'https://www.skive-trav.dk/',
   kort: 'https://www.google.com/maps/search/?api=1&query=Skive+Trav%2C+Flyvej+2%2C+7800+Skive',
@@ -574,7 +574,7 @@ const foelg = (fb = []) => (SITE.facebook || SITE.instagram || fb.length ? `
     <div>
       ${etiket('Følg med', ' data-vis')}
       <h2 data-vis style="--i:1">Dagens køreture.</h2>
-      <p data-vis style="--i:2">På Facebook fortæller holdet, hvor Kasper kører – egne heste og gæsteture – og hvordan det gik${fb.length ? '. Her er de seneste opslag' : ''}.</p>
+      <p data-vis style="--i:2">På Facebook og Instagram fortæller holdet, hvor Kasper kører – egne heste og gæsteture – og hvordan det gik${fb.length ? '. Her er de seneste opslag' : ''}.</p>
       <p class="valg" data-vis style="--i:3">
         ${SITE.facebook ? ekstern(SITE.facebook, 'Team Kasper Foget på Facebook', 'knap') : ''}
         ${SITE.instagram ? ekstern(SITE.instagram, 'Instagram', 'knap knap--kant') : ''}

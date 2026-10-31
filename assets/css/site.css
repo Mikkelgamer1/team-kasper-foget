@@ -320,6 +320,7 @@ h3 { font-size: 1.2rem; letter-spacing: -.02em; line-height: 1.15; }
 .foelg { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
 .foelg h2 { margin-bottom: 16px; }
 .foelg p { color: var(--daemp); }
+.foelg .valg { color: var(--blaek); }
 html:not(.js) .fb { display: none; }
 .fb__note { margin-top: 12px; font: 500 .72rem var(--mono); color: var(--daemp) !important; }
 .fb iframe { display: block; width: 100%; max-width: 500px; height: 640px; border: 0; border-radius: var(--r); background: #fff; }
