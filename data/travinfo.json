@@ -1,5 +1,5 @@
 {
- "opdateret": "2026-10-30T10:50:13.015Z",
+ "opdateret": "2026-10-31T10:20:52.698Z",
  "traener": {
   "foedt": 1993,
   "hjemmebane": "Skive Trav",
@@ -47,12 +47,12 @@
  "kuskStatistik": [
   {
    "aar": 2026,
-   "starter": 311,
-   "sejre": 41,
+   "starter": 316,
+   "sejre": 43,
    "toer": 25,
    "treer": 40,
-   "procent": 13,
-   "praemier": 1060850
+   "procent": 14,
+   "praemier": 1085350
   },
   {
    "aar": 2025,
@@ -2570,14 +2570,5 @@
    "praemie": 0
   }
  ],
- "kommende": [
-  {
-   "dato": "2026-10-30",
-   "bane": "Sk",
-   "loeb": 92,
-   "hestId": 656932,
-   "hest": "Murphy's Law",
-   "kusk": "Kasper Foget"
-  }
- ]
+ "kommende": []
 }
