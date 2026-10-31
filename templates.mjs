@@ -177,14 +177,12 @@ const top = (sti) => `
 
 const kontaktbaand = () => `
 <section class="cta">
-  <div class="wrap cta__inner">
-    <div>
-      ${etiket('Kontakt', ' data-vis')}
-      <h2 data-vis style="--i:1">Har du en hest til Stald E?</h2>
-      <p data-vis style="--i:2">Ring, send en sms eller skriv til ${SITE.fornavn} – om træning, tilkøring eller en gæstetur i sulkyen.</p>
-    </div>
-    <div class="cta__valg" data-vis style="--i:3">
-      <a class="cta__tlf" href="tel:${tlfLink}">${SITE.telefon}</a>
+  <div class="wrap">
+    ${etiket('Kontakt', ' data-vis')}
+    <h2 data-vis style="--i:1">Har du en hest til Stald E?</h2>
+    <a class="cta__tlf" href="tel:${tlfLink}" data-vis style="--i:2"><span class="sr">Ring til ${SITE.fornavn}: </span>${SITE.telefon}</a>
+    <div class="cta__bund" data-vis style="--i:3">
+      <p>Ring, send en sms eller skriv til ${SITE.fornavn} – om træning, tilkøring eller en gæstetur i sulkyen.</p>
       <p class="valg"><a class="knap knap--hvid" href="mailto:${SITE.email}">Skriv en mail ${pil}</a> ${link('kontakt/', 'Alle kontaktoplysninger', 'link--lys')}</p>
     </div>
   </div>
@@ -289,7 +287,7 @@ function layout({ sti, titel, beskrivelse, indhold, o, klasse = '', noindex = fa
 <title>${esc(titel)}</title>
 <meta name="description" content="${esc(beskrivelse)}">
 ${noindex ? '<meta name="robots" content="noindex">' : '<link rel="canonical" href="' + kanonisk + '">'}
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#f3f3ef">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="da_DK">
 <meta property="og:site_name" content="${SITE.navn}">
@@ -303,7 +301,8 @@ ${noindex ? '<meta name="robots" content="noindex">' : '<link rel="canonical" hr
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="48x48" href="${R}assets/img/ikon-48.png">
 <link rel="apple-touch-icon" href="${R}assets/img/ikon-180.png">
-<link rel="preload" href="${R}assets/fonts/jakarta.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${R}assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${R}assets/fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${R}assets/css/site.css?v=${V}">
 <script>document.documentElement.classList.add('js');setTimeout(function(){window.__klar||document.documentElement.classList.remove('js')},2500)</script>
 <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graf }).replace(/</g, '\\u003c')}</script>
@@ -321,17 +320,15 @@ ${bund(o)}
 `;
 }
 
-// Sidehoved på undersider: titel og tekst på hvidt, derunder et bredt billedbånd.
+// Sidehoved på undersider: stor titel, tekst og nøgletal, derunder et bredt billede.
 const sidehoved = ({ sti, h1, tekst, foto, alt = '', pos = '50% 50%', chips = [] }) => `
 <section class="sidehoved">
   <div class="wrap">
     <nav class="sti" aria-label="Brødkrumme"><a href="${R}">Forside</a><span aria-hidden="true">/</span><span aria-current="page">${sti}</span></nav>
-    <div class="sidehoved__gitter">
-      <h1>${h1}</h1>
-      <div>
-        <p class="indled">${tekst}</p>
-        ${chips.length ? `<ul class="chips">${chips.map(([tal, tekst]) => `<li><b>${tal}</b>${tekst}</li>`).join('')}</ul>` : ''}
-      </div>
+    <h1 class="sidehoved__titel">${h1}</h1>
+    <div class="sidehoved__bund">
+      <p class="indled">${tekst}</p>
+      ${chips.length ? `<ul class="chips">${chips.map(([tal, tekst]) => `<li><b>${tal}</b>${tekst}</li>`).join('')}</ul>` : ''}
     </div>
     <figure class="sidehoved__foto" style="--pos:${pos}">${billede(foto, alt, { sizes: '(min-width: 1320px) 1240px, 94vw', lazy: false })}</figure>
   </div>
@@ -458,9 +455,31 @@ const hestegruppe = (titel, heste) => (heste.length ? `
       </ul>
     </div>` : '');
 
-const tidslinje = () => `<ol class="vej">${VEJEN.map(([naar, titel, tekst], i) => `
-      <li data-vis style="--i:${i}"><time>${naar}</time><h3>${titel}</h3><p>${tekst}</p></li>`).join('')}
-    </ol>`;
+// Rullebåndet med meritter (listen står to gange efter hinanden, så den kan glide uendeligt).
+const MERITTER = ['Europamester for travjockeys 2018', '61 sejre som catchdriver i USA', 'Jydsk 4-årings Grand Prix 2025', 'Egen stald på Skive Trav siden 1. december 2025', 'A1-licens som træner og kusk'];
+const baand = () => `
+<div class="baand" role="region" aria-label="Meritter">
+  <div class="baand__spor">${[0, 1].map((n) => `<ul${n ? ' aria-hidden="true"' : ''}>${MERITTER.map((m) => `<li>${m}</li>`).join('')}</ul>`).join('')}</div>
+</div>`;
+
+// Historien: billedet og overskriften står fast, mens trinene ruller forbi.
+const historie = () => `
+<section class="sek historie">
+  <div class="wrap historie__gitter">
+    <div class="historie__fast">
+      ${etiket('Vejen hertil')}
+      <h2>Fra Skive til USA – og hjem igen.</h2>
+      <figure class="historie__foto">${billede('aften', 'Travløb i aftensol på Skive Trav', { sizes: '(min-width: 901px) 40vw, 92vw' })}</figure>
+    </div>
+    <div>
+      <ol class="historie__trin">${VEJEN.map(([naar, titel, tekst]) => `
+        <li data-vis><span class="historie__aar">${naar}</span><h3>${titel}</h3><p>${tekst}</p></li>`).join('')}
+      </ol>
+      <blockquote class="historie__citat" data-vis><p>»Hvis ikke jeg havde haft tiden i USA, så ville jeg ikke være den, jeg er i dag.«</p><cite>${SITE.person} til travservice.dk, oktober 2025</cite></blockquote>
+      <p class="valg" data-vis>${link('om-kasper/', 'Hele historien')}</p>
+    </div>
+  </div>
+</section>`;
 
 // Sejre som kusk pr. sæson (kun sæsoner med mindst 50 starter).
 const kuskSoejler = (aar) => {
@@ -572,69 +591,36 @@ const foelg = (fb = []) => (SITE.facebook || SITE.instagram || fb.length ? `
 const forside = (o, data) => `
 <section class="hero">
   <div class="wrap">
-    <div class="hero__kort">
-      <figure class="hero__foto">${billede('hero', 'Sort travhest i fuld fart mod kameraet på Skive Trav', { sizes: '(min-width: 901px) 48vw, 96vw', lazy: false })}</figure>
-      <div class="hero__tekst">
-        ${etiket('Professionel travtræner · Skive Trav')}
-        <h1>Kasper Foget</h1>
-        <p class="hero__indled">Europamester for travjockeys, catchdriver i USA og siden 1. december 2025 selvstændig træner med ${o.heste.length} heste i Stald E på Skive Trav.</p>
-        <p class="valg">${knap('kontakt/', `Kontakt ${SITE.fornavn}`)} ${knap('heste/', 'Se hestene', 'knap--glas')}</p>
-      </div>
-      <ul class="hero__chips" aria-label="Meritter">
-        <li><b>2018</b>Europamester for travjockeys</li>
-        <li><b>61</b>sejre som catchdriver i USA</li>
-        <li><b>2025</b>Jydsk 4-årings Grand Prix</li>
-      </ul>
+    <p class="hero__meta"><span>Professionel travtræner</span><span>${SITE.stald}</span><span>Siden 1.12.2025</span></p>
+    <h1 class="hero__navn">Kasper Foget</h1>
+    <figure class="hero__foto">${billede('kingston', 'Kingston vinder Jydsk 4-årings Grand Prix 2025 med Kasper Foget i sulkyen', { sizes: '(min-width: 1320px) 1240px, 96vw', lazy: false })}<figcaption>Kingston vinder Jydsk 4-årings Grand Prix 2025 · Foto: Ole Hindby</figcaption></figure>
+    <div class="hero__bund">
+      <p class="hero__indled">Europamester for travjockeys, catchdriver i USA og siden 1. december 2025 selvstændig træner med ${o.heste.length} heste i Stald E på Skive Trav.</p>
+      <p class="valg">${knap('kontakt/', `Kontakt ${SITE.fornavn}`)} ${knap('heste/', 'Se hestene', 'knap--kant')}</p>
     </div>
   </div>
 </section>
+${baand()}
 
-<section class="sek sek--bento">
-  <div class="wrap">
-    <div class="bento">
-      <div class="bento__stor" data-vis>
-        ${etiket(`Sæson ${o.saeson.aar}`)}
-        <h2>Første sæson med egen stald.</h2>
-        <p class="bento__tal"><b>${o.saeson.sejre}</b>sejre som træner på ${o.saeson.starter} starter</p>
-        <p class="bento__note">Opdateret ${o.opdateret} fra Dansk Hestevæddeløb.</p>
-      </div>
-      <div class="bento__felt" data-vis style="--i:1"><b>${o.saeson.procent}<small>%</small></b><span>sejrsprocent</span></div>
-      <div class="bento__felt" data-vis style="--i:2"><b>${nf(o.saeson.praemier)}<small>kr.</small></b><span>indkørt</span></div>
-      <div class="bento__felt bento__felt--groen" data-vis style="--i:3"><b>${o.kusk.sejre}</b><span>sejre som kusk på ${o.kusk.starter} starter</span></div>
-      <div class="bento__felt bento__felt--mint" data-vis style="--i:4"><b>${o.heste.length}</b><span>heste i Stald E – ${o.ustartede.length} unge på vej</span></div>
-      <figure class="bento__foto" data-vis style="--i:2">${billede('loeb-7', 'Hest og kusk med buketten efter en sejr', { sizes: '(min-width: 901px) 50vw, 92vw' })}</figure>
-      <div class="bento__felt bento__felt--moerk" data-vis style="--i:3"><span>Næste start</span>${o.kommende.length ? `<b class="bento__hest">${esc(o.kommende[0].hest)}</b><span>${ugedag(o.kommende[0].dato)} ${kortDato(o.kommende[0].dato)} · ${esc(bane(o.kommende[0].bane))}</span>` : '<b class="bento__hest">Ingen startmeldte</b><span>Nye startlister på Travinfo</span>'}</div>
-      <a class="bento__felt bento__felt--link" href="${R}om-kasper/" data-vis style="--i:4"><span>Historien</span><b class="bento__hest">Fra Skive til USA – og hjem igen</b><span class="bento__pil">Læs om Kasper ${pil}</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="sek sek--top0">
-  <div class="wrap">
-    <div class="citat">
-      <figure class="citat__foto" data-vis>${billede('aften', 'Travløb i aftensol på Skive Trav', { sizes: '(min-width: 901px) 40vw, 92vw' })}</figure>
-      <blockquote class="citat__tekst" data-vis style="--i:1">
-        <p>»Hvis ikke jeg havde haft tiden i USA, så ville jeg ikke være den, jeg er i dag.«</p>
-        <footer><b>${SITE.person}</b><span>til travservice.dk, oktober 2025</span></footer>
-        <p class="valg">${link('om-kasper/', 'Læs hele historien', 'link--lys')}</p>
-      </blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="sek sek--top0">
+<section class="sek">
   <div class="wrap">
     <div class="sekhoved">
       <div>
-        ${etiket('Vejen hertil', ' data-vis')}
-        <h2 data-vis style="--i:1">Fra Skive til USA – og hjem igen.</h2>
+        ${etiket(`Sæson ${o.saeson.aar}`, ' data-vis')}
+        <h2 data-vis style="--i:1">Første sæson med egen stald.</h2>
       </div>
-      <p data-vis style="--i:2">${SITE.person} er født i ${data.traener.foedt} og har ${esc(data.traener.licens)}-licens som træner og kusk.</p>
+      <p data-vis style="--i:2">Officielle tal fra Dansk Hestevæddeløb, opdateret ${o.opdateret}.</p>
     </div>
-    ${tidslinje()}
-    <figure class="bred" data-vis>${billede('kingston', 'Kingston vinder Jydsk 4-årings Grand Prix 2025 med Kasper Foget i sulkyen', { sizes: '(min-width: 1320px) 1240px, 94vw' })}<figcaption>Kingston vinder Jydsk 4-årings Grand Prix 2025 · træner Michael Lønborg, kusk Kasper Foget · Foto: Ole Hindby</figcaption></figure>
+    <div class="tal">
+      <div class="tal__felt tal__felt--stor" data-vis><b data-tael="${o.saeson.sejre}">${o.saeson.sejre}</b><span>sejre som træner</span><small>på ${o.saeson.starter} starter i ${o.saeson.aar}</small></div>
+      <div class="tal__felt" data-vis style="--i:1"><b><span data-tael="${o.saeson.procent}">${o.saeson.procent}</span><small>%</small></b><span>sejrsprocent</span></div>
+      <div class="tal__felt" data-vis style="--i:2"><b><span data-tael="${o.saeson.praemier}">${nf(o.saeson.praemier)}</span><small>kr.</small></b><span>indkørt som træner</span></div>
+      <div class="tal__felt tal__felt--groen" data-vis style="--i:3"><b data-tael="${o.kusk.sejre}">${o.kusk.sejre}</b><span>sejre som kusk på ${o.kusk.starter} starter</span></div>
+      <div class="tal__felt tal__felt--moerk" data-vis style="--i:4"><b data-tael="${o.heste.length}">${o.heste.length}</b><span>heste i Stald E – ${o.ustartede.length} unge på vej</span></div>
+    </div>
   </div>
 </section>
+${historie()}
 
 <section class="sek sek--moerk">
   <div class="wrap">
@@ -778,9 +764,9 @@ ${sidehoved({
   sti: 'Stalden',
   h1: 'Stald E, Skive Trav',
   tekst: `${SITE.navn} holder til i Stald E på selve Skive Trav – med ${o.heste.length} heste på træningslisten.`,
-  foto: 'loeb-skive',
-  alt: 'Sort hest i løb på Skive Trav',
-  pos: '50% 45%',
+  foto: 'aften',
+  alt: 'Travløb i aftensol på Skive Trav',
+  pos: '50% 70%',
   chips: [[o.heste.length, 'heste i træning'], ['14–15', 'bokse'], [o.banetal.length, `baner i ${o.saeson.aar}`]],
 })}
 

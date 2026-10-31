@@ -50,3 +50,12 @@ if (fb) {
     document.body.append(banner);
   }
 }
+
+// Tallene tæller op, når de kommer til syne. Uden JavaScript eller med reduceret bevægelse står de bare der.
+const taelOp = (el) => {
+  const maal = Number(el.dataset.tael); const start = performance.now();
+  const trin = (nu) => { const x = Math.min(1, (nu - start) / 1400); el.textContent = Math.round(maal * (1 - (1 - x) ** 3)).toLocaleString('da-DK'); if (x < 1) requestAnimationFrame(trin); };
+  requestAnimationFrame(trin);
+};
+const taelIO = new IntersectionObserver((poster) => { for (const p of poster) if (p.isIntersecting) { taelIO.unobserve(p.target); taelOp(p.target); } }, { threshold: 0.5 });
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('[data-tael]').forEach((el) => taelIO.observe(el));
