@@ -571,7 +571,7 @@ const forside = (o, data) => `
 <section class="hero">
   <div class="wrap">
     <div class="hero__kort">
-      <figure class="hero__foto">${billede('hero', 'Travløb i aftensol på Skive Trav', { sizes: '(min-width: 1320px) 1240px, 96vw', lazy: false })}</figure>
+      <figure class="hero__foto">${billede('hero', 'Travløb i aftensol på Skive Trav', { sizes: '(min-width: 901px) 48vw, 96vw', lazy: false })}</figure>
       <div class="hero__tekst">
         ${etiket('Professionel travtræner · Skive Trav')}
         <h1>Kasper Foget</h1>
