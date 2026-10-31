@@ -384,7 +384,7 @@ html:not(.js) .fb { display: none; }
 .chips li { display: grid; gap: 2px; padding: 14px 20px; border-radius: var(--r-lille); background: var(--flade); font: 500 .72rem var(--mono); color: var(--daemp); }
 .chips b { font: 650 1.8rem var(--sans); letter-spacing: -.045em; color: var(--blaek); }
 .sidehoved__foto { margin: 0; overflow: hidden; border-radius: var(--r); background: var(--moerk); }
-.sidehoved__foto img { width: 100%; height: clamp(260px, 38vw, 560px); object-fit: cover; object-position: var(--pos, 50% 50%); animation: zoom 2.8s var(--ease) both; }
+.sidehoved__foto img { width: 100%; height: auto; aspect-ratio: 16 / 9.5; object-fit: cover; object-position: var(--pos, 50% 50%); animation: zoom 2.8s var(--ease) both; }
 
 .artikel { display: grid; grid-template-columns: 320px 1fr; gap: clamp(36px, 6vw, 112px); align-items: start; }
 .fakta { position: sticky; top: calc(var(--top) + 24px); padding: 10px 26px; border-radius: var(--r); background: var(--flade); }
@@ -506,6 +506,7 @@ html:not(.js) .fb { display: none; }
   .maerke__ord { font-size: .98rem; }
   .hero__meta span:nth-child(2) { display: none; }
   .hero__foto { aspect-ratio: 4 / 5; }
+  .sidehoved__foto img { aspect-ratio: 4 / 3.4; }
   .baand li { padding-block: 18px; }
   .tal { grid-auto-rows: minmax(140px, auto); gap: 10px; }
   .tal__felt { padding: 18px; }
