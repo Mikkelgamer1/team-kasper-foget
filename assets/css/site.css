@@ -24,7 +24,7 @@
   --ease: cubic-bezier(.2, .7, .1, 1);
   --kant: clamp(16px, 4vw, 56px);
   --top: 72px;
-  --luft: clamp(72px, 9vw, 140px);
+  --luft: clamp(56px, 6.4vw, 96px);
   --r: 28px;
   --r-lille: 16px;
 }
@@ -197,7 +197,7 @@ h3 { font-size: 1.2rem; letter-spacing: -.02em; line-height: 1.15; }
 .sekhoved { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px clamp(32px, 6vw, 96px); align-items: end; margin-bottom: clamp(32px, 4.5vw, 64px); }
 .sekhoved > p { max-width: 44ch; color: var(--daemp); }
 .sek--moerk .sekhoved > p { color: var(--lys-daemp); }
-.duo { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 100px); align-items: center; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 100px); align-items: start; }
 .duo--top { align-items: start; }
 .duo .indled { margin-block: 18px 26px; }
 
