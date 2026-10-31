@@ -487,19 +487,19 @@ const ydelser = (o) => `
       </li>
     </ul>`;
 
-// Billedgitteret: stor = 2×2 felter, hoej = 1×2, bred = 2×1. Rækkefølgen er lagt, så gitteret går op i fire spalter.
+// Billedgitteret: stor = 2×2 felter, hoej = 1×2, bred = 2×1. Fjerde felt (valgfrit) styrer beskæringen. Rækkefølgen er lagt, så gitteret går op i fire spalter.
 const FOTOS = [
   ['loeb-sort', 'Sort travhest i fuld fart på Skive Trav', 'stor'],
   ['portraet-brun', 'Brun travhest med grime foran stalden', 'hoej'],
   ['staldgang', 'Travhest i staldgangen', 'hoej'],
   ['loeb-oploeb', 'Hest nummer 6 i opløbet foran tribunen', 'bred'],
-  ['loeb-7', 'Hest nummer 7 kommer i mål', 'bred'],
+  ['loeb-7', 'Hest nummer 7 kommer i mål', 'bred', '50% 8%'],
   ['portraet-moerk', 'Mørk travhest ved hegnet', 'hoej'],
   ['loeb-skive', 'Sort hest i løb på Skive Trav · Foto: Gorm Johansen', 'stor'],
   ['boks', 'En ung hest i boksen', 'hoej'],
 ];
-const galleri = (n = FOTOS.length) => `<ul class="galleri">${FOTOS.slice(0, n).map(([navn, alt, form], i) => `
-      <li class="galleri__${form}" data-vis style="--i:${i % 4}">${billede(navn, alt, { sizes: form === 'stor' || form === 'bred' ? '(min-width: 901px) 50vw, 92vw' : '(min-width: 901px) 25vw, 46vw' })}</li>`).join('')}
+const galleri = (n = FOTOS.length) => `<ul class="galleri">${FOTOS.slice(0, n).map(([navn, alt, form, pos], i) => `
+      <li class="galleri__${form}" data-vis style="--i:${i % 4}${pos ? `; --pos:${pos}` : ""}">${billede(navn, alt, { sizes: form === 'stor' || form === 'bred' ? '(min-width: 901px) 50vw, 92vw' : '(min-width: 901px) 25vw, 46vw' })}</li>`).join('')}
     </ul>`;
 
 const banebjaelker = (banetal) => {
