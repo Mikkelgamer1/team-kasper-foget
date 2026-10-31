@@ -1,4 +1,4 @@
-/* Team Kasper Foget – hvid, grafit og smaragdgrøn fra løbsfarverne (hvid/grøn) og holdets logo. Luftigt og stramt: Plus Jakarta Sans, skarpe kanter, tynde grønne linjer. */
+/* Team Kasper Foget – hvid, grafit og smaragdgrøn fra løbsfarverne (hvid/grøn) og holdets logo. Moderne og billedbåret: Plus Jakarta Sans, store afrundede kort, bento-gitter og glas over foto. */
 
 @font-face { font-family: "Jakarta"; src: url("../fonts/jakarta.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
 
@@ -22,7 +22,8 @@
   --kant: clamp(16px, 4.5vw, 64px);
   --top: 76px;
   --luft: clamp(64px, 8vw, 120px);
-  --r: 6px;
+  --r: 22px;
+  --r-lille: 14px;
 }
 
 @view-transition { navigation: auto; }
@@ -62,13 +63,15 @@ h3 { font-size: 1.15rem; letter-spacing: -.015em; }
 
 /* ---------- knapper og links ---------- */
 
-.knap { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 24px; border: 0; border-radius: var(--r); background: var(--groen); color: #fff; font-size: .94rem; font-weight: 700; transition: background .25s, transform .25s var(--ease); }
+.knap { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 24px; border: 0; border-radius: 999px; background: var(--groen); color: #fff; font-size: .94rem; font-weight: 700; transition: background .25s, transform .25s var(--ease); }
 .knap:hover { background: var(--groen-moerk); transform: translateY(-2px); }
 .knap .pil, .link .pil { transition: transform .3s var(--ease); }
 .knap:hover .pil, .link:hover .pil { transform: translateX(4px); }
 .knap--lille { min-height: 42px; padding: 0 18px; font-size: .86rem; }
 .knap--hvid, .knap--lys { background: #fff; color: var(--grafit); }
 .knap--hvid:hover, .knap--lys:hover { background: var(--is); }
+.knap--glas { background: rgba(255, 255, 255, .14); color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); backdrop-filter: blur(10px); }
+.knap--glas:hover { background: rgba(255, 255, 255, .26); }
 .knap--kant { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; }
 .knap--kant:hover { background: var(--grafit); color: #fff; box-shadow: none; }
 .link { display: inline-flex; align-items: center; gap: 10px; padding-block: 4px; font-weight: 700; color: var(--groen); border-bottom: 2px solid currentColor; }
@@ -116,38 +119,47 @@ h3 { font-size: 1.15rem; letter-spacing: -.015em; }
 .menu__bund a { font-size: 1.1rem; font-weight: 600; color: var(--lys-tekst); }
 .menu__bund a:first-child { font-size: 1.7rem; font-weight: 800; color: #fff; }
 
-/* ---------- hero: delt i to – tekst på hvidt, foto helt ud til kanten ---------- */
+/* ---------- hero: ét stort afrundet billedkort med navnet og glas-mærker ovenpå ---------- */
 
-.hero { display: grid; grid-template-columns: 1fr 1fr; min-height: min(calc(100svh - var(--top)), 820px); }
-.hero__tekst { display: flex; flex-direction: column; justify-content: center; padding: clamp(48px, 6vw, 96px) clamp(32px, 5vw, 80px) clamp(48px, 6vw, 96px) max(var(--kant), calc((100vw - 1320px) / 2 + var(--kant))); }
-.hero h1 { margin-bottom: 26px; font-size: clamp(3.6rem, 8.6vw, 8.2rem); font-weight: 800; line-height: .88; letter-spacing: -.055em; }
-.hero h1::after { content: ""; display: block; width: 100%; max-width: 420px; height: 3px; margin-top: 26px; background: var(--groen); }
-.hero__intro { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
-.hero__intro li { padding: 6px 12px; border-radius: 999px; background: var(--is); font-size: .82rem; font-weight: 600; color: var(--grafit2); }
-.hero__indled { max-width: 46ch; font-size: clamp(1.05rem, 1.3vw, 1.18rem); color: var(--daemp); }
-.hero__foto { position: relative; margin: 0; overflow: hidden; background: var(--grafit); }
-.hero__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 50%; }
-.hero__foto::after { content: ""; position: absolute; inset: auto 0 0; height: 6px; background: var(--groen); }
+.hero { padding: clamp(12px, 1.6vw, 22px) 0 0; }
+.hero__kort { position: relative; display: grid; align-items: end; min-height: min(calc(100svh - var(--top) - 40px), 780px); overflow: hidden; border-radius: calc(var(--r) + 6px); background: var(--grafit); color: #fff; isolation: isolate; }
+.hero__foto { position: absolute; inset: 0; z-index: -2; margin: 0; }
+.hero__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 45%; }
+.hero__kort::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(13, 22, 19, .86) 0%, rgba(13, 22, 19, .55) 45%, rgba(13, 22, 19, 0) 75%), linear-gradient(0deg, rgba(13, 22, 19, .7) 0%, rgba(13, 22, 19, 0) 50%); }
+.hero__tekst { max-width: 640px; padding: clamp(28px, 5vw, 72px); }
+.hero .etiket { color: var(--mint); }
+.hero h1 { margin-bottom: 20px; font-size: clamp(3.2rem, 8vw, 7.4rem); font-weight: 800; line-height: .9; letter-spacing: -.055em; }
+.hero__indled { max-width: 44ch; font-size: clamp(1.05rem, 1.3vw, 1.18rem); color: rgba(255, 255, 255, .86); }
+.hero__chips { position: absolute; top: clamp(18px, 3vw, 36px); right: clamp(18px, 3vw, 36px); display: grid; gap: 10px; width: min(250px, 40%); }
+.hero__chips li { display: grid; padding: 14px 18px; border-radius: var(--r-lille); background: rgba(255, 255, 255, .12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22); backdrop-filter: blur(14px) saturate(140%); font-size: .82rem; line-height: 1.35; color: rgba(255, 255, 255, .88); }
+.hero__chips b { font-size: 1.6rem; font-weight: 800; letter-spacing: -.03em; color: var(--mint); }
 
-/* Meritbåndet */
-.meritter { background: var(--grafit); color: #fff; }
-.meritter ul { display: grid; grid-template-columns: repeat(4, 1fr); }
-.meritter li { display: grid; align-content: start; gap: 4px; padding: 28px clamp(16px, 2.2vw, 32px); border-left: 1px solid var(--lys-linje); }
-.meritter li:first-child { border-left: 0; padding-left: 0; }
-.meritter b { font-size: clamp(1.6rem, 2.6vw, 2.3rem); font-weight: 800; letter-spacing: -.03em; color: var(--mint); font-variant-numeric: tabular-nums; }
-.meritter span { font-size: .88rem; color: var(--lys-tekst); }
-
-/* Sæsonens tal */
-.saeson { display: grid; grid-template-columns: .9fr 1.6fr; gap: 24px clamp(32px, 5vw, 80px); align-items: end; padding-bottom: clamp(36px, 4vw, 56px); border-bottom: 1px solid var(--linje); }
-.saeson__hoved h2 { margin-bottom: 10px; }
-.saeson__hoved p { font-size: .86rem; color: var(--daemp); }
-.saeson__tal { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 3px solid var(--grafit); }
-.saeson__tal div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 4px; padding: 16px 14px 0 0; }
-.saeson__tal div + div { padding-left: 14px; border-left: 1px solid var(--linje); }
-.saeson__tal dt { font-size: .72rem; font-weight: 600; color: var(--daemp); }
-.saeson__tal dd { font-size: clamp(1.7rem, 3vw, 2.7rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.saeson__tal dd small { margin-left: 4px; font-size: .38em; font-weight: 600; letter-spacing: 0; color: var(--daemp); }
-.saeson__tal div:nth-child(2) dd, .saeson__kusk dd { color: var(--groen); }
+/* Sæsonen som bento-gitter */
+.sek--bento { padding-block: clamp(20px, 2.4vw, 32px) var(--luft); }
+.bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(150px, auto); gap: 14px; }
+.bento > * { margin: 0; border-radius: var(--r); background: var(--is); }
+.bento__stor { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; padding: clamp(24px, 3vw, 40px); background: #fff; box-shadow: inset 0 0 0 1px var(--linje); }
+.bento__stor h2 { max-width: 14ch; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.bento__tal { display: grid; margin-top: auto; padding-top: 24px; font-weight: 600; color: var(--daemp); }
+.bento__tal b { font-size: clamp(4rem, 9vw, 7rem); font-weight: 800; letter-spacing: -.06em; line-height: .9; color: var(--groen); }
+.bento__note { margin-top: 10px; font-size: .8rem; color: var(--daemp); }
+.bento__felt { display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 22px 24px; }
+.bento__felt b { font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bento__felt b small { margin-left: 4px; font-size: .42em; letter-spacing: 0; }
+.bento__felt span { font-size: .86rem; color: var(--daemp); }
+.bento__felt--groen { background: var(--groen); color: #fff; }
+.bento__felt--groen span, .bento__felt--moerk span { color: rgba(255, 255, 255, .78); }
+.bento__felt--mint { background: #d7f5e7; }
+.bento__felt--moerk { justify-content: space-between; background: var(--grafit); color: #fff; }
+.bento__felt--moerk > span:first-child { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mint); }
+.bento__felt b.bento__hest { font-size: 1.5rem; white-space: normal; }
+.bento__felt--link { justify-content: space-between; background: linear-gradient(140deg, #d7f5e7, var(--mint)); transition: transform .3s var(--ease); }
+.bento__felt--link:hover { transform: translateY(-4px); }
+.bento__felt--link > span:first-child { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--groen-moerk); }
+.bento__felt--link .bento__pil { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; color: var(--grafit); }
+.bento__foto { position: relative; grid-column: span 2; overflow: hidden; }
+.bento__foto img { width: 100%; height: 100%; min-height: 220px; object-fit: cover; }
+.bento__foto figcaption { position: absolute; left: 14px; bottom: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(19, 28, 25, .6); backdrop-filter: blur(8px); color: #fff; font-size: .74rem; font-weight: 600; }
 
 /* ---------- sektioner ---------- */
 
@@ -168,17 +180,18 @@ h3 { font-size: 1.15rem; letter-spacing: -.015em; }
 .duo--top { align-items: start; }
 .duo .indled { margin-block: 18px 26px; }
 
-/* Vejen hertil: tidslinje med grøn linje */
-.vej { display: grid; grid-template-columns: repeat(5, 1fr); margin-bottom: clamp(36px, 4vw, 56px); border-top: 2px solid var(--linje); }
-.vej li { position: relative; padding: 26px 20px 0 0; }
-.vej li::before { content: ""; position: absolute; top: -7px; left: 0; width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 3px var(--groen); }
-.vej li:last-child::before { background: var(--groen); }
-.vej time { display: block; margin-bottom: 6px; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--groen); }
+/* Vejen hertil: kort med årstal */
+.vej { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: clamp(20px, 3vw, 32px); }
+.vej li { display: flex; flex-direction: column; padding: 24px 22px 26px; border-radius: var(--r); background: var(--is); }
+.vej li:last-child { background: var(--groen); color: #fff; }
+.vej li:last-child p { color: rgba(255, 255, 255, .82); }
+.vej time { align-self: flex-start; margin-bottom: 18px; padding: 4px 12px; border-radius: 999px; background: #fff; font-size: .78rem; font-weight: 800; letter-spacing: .04em; color: var(--groen); }
+.vej li:last-child time { background: rgba(255, 255, 255, .16); color: #fff; }
 .vej h3 { margin-bottom: 8px; font-size: 1.2rem; }
 .vej p { font-size: .9rem; color: var(--daemp); }
-.bred { margin: 0; overflow: hidden; border-radius: var(--r); background: var(--grafit); }
+.bred { position: relative; margin: 0; overflow: hidden; border-radius: var(--r); background: var(--grafit); }
 .bred img { width: 100%; height: auto; }
-.bred figcaption { padding: 12px 16px; font-size: .8rem; color: var(--lys-tekst); }
+.bred figcaption { position: absolute; left: 16px; bottom: 16px; max-width: calc(100% - 32px); padding: 8px 14px; border-radius: var(--r-lille); background: rgba(19, 28, 25, .62); backdrop-filter: blur(8px); font-size: .8rem; color: #fff; }
 
 /* Hestekort: foto + tal */
 .hestekort { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
@@ -308,10 +321,10 @@ html:not(.js) .fb { display: none; }
 .fbkort p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden; padding: 8px 16px 0; font-size: .9rem; line-height: 1.5; white-space: pre-line; }
 .fbkort__mere { margin-top: auto; padding: 14px 16px 16px; font-size: .74rem; font-weight: 700; color: var(--daemp); }
 
-.ydelser { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 3px solid var(--grafit); }
-.ydelser li { padding: 28px 28px 8px 0; }
-.ydelser li + li { padding-left: 28px; border-left: 1px solid var(--linje); }
-.ydelser__nr { display: block; margin-bottom: 18px; font-size: .8rem; font-weight: 800; letter-spacing: .1em; color: var(--groen); }
+.ydelser { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.ydelser li { padding: 30px 28px; border-radius: var(--r); background: var(--is); }
+.ydelser li:nth-child(2) { background: #d7f5e7; }
+.ydelser__nr { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 22px; border-radius: 50%; background: var(--groen); font-size: .8rem; font-weight: 800; color: #fff; }
 .ydelser h3 { margin-bottom: 10px; font-size: 1.35rem; }
 .ydelser p { color: var(--daemp); }
 
@@ -440,13 +453,9 @@ html:not(.js) .fb { display: none; }
 @media (max-width: 1100px) {
   .top__nav, .top__tlf { display: none; }
   .burger { display: inline-flex; }
-  .saeson { grid-template-columns: 1fr; }
-  .meritter ul { grid-template-columns: 1fr 1fr; }
-  .meritter li:nth-child(3) { border-left: 0; padding-left: 0; }
-  .meritter li:nth-child(n + 3) { border-top: 1px solid var(--lys-linje); }
-  .vej { grid-template-columns: 1fr; border-top: 0; border-left: 2px solid var(--linje); margin-left: 6px; }
-  .vej li { padding: 0 0 26px 26px; }
-  .vej li::before { top: 4px; left: -7px; }
+  .vej { grid-template-columns: 1fr 1fr; }
+  .vej li:last-child { grid-column: 1 / -1; }
+  .bento { grid-template-columns: 1fr 1fr; }
   .kpi { grid-template-columns: repeat(3, 1fr); }
   .kpi div:nth-child(4) { padding-left: 0; border-left: 0; }
   .kpi div:nth-child(n + 4) { margin-top: 16px; }
@@ -457,15 +466,11 @@ html:not(.js) .fb { display: none; }
   :root { --top: 66px; }
   .top__cta { display: none; }
   .maerke img { width: 52px; }
-  .hero { grid-template-columns: 1fr; min-height: 0; }
-  .hero__tekst { padding: 40px var(--kant) 44px; }
-  .hero__foto { order: -1; height: 56svh; min-height: 300px; }
   .duo, .resgitter, .tabeller, .cta__inner, .artikel, .partnere, .foelg, .sekhoved, .sidehoved__gitter, .hestekort { grid-template-columns: 1fr; }
-  .saeson__tal { grid-template-columns: repeat(3, 1fr); }
-  .saeson__tal div:nth-child(4) { padding-left: 0; border-left: 0; }
-  .saeson__tal div:nth-child(n + 4) { margin-top: 16px; }
   .ydelser { grid-template-columns: 1fr; }
-  .ydelser li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--linje); }
+  .hero__kort { min-height: 620px; }
+  .hero__kort::before { background: linear-gradient(0deg, rgba(13, 22, 19, .92) 0%, rgba(13, 22, 19, .55) 55%, rgba(13, 22, 19, .1) 100%); }
+  .hero__chips { position: static; grid-template-columns: repeat(3, 1fr); width: auto; padding: 0 clamp(28px, 5vw, 72px) clamp(24px, 4vw, 40px); }
   .bund__gitter { grid-template-columns: 1fr 1fr; }
   .bund__brand { grid-column: 1 / -1; }
   .fakta { position: static; }
@@ -475,12 +480,15 @@ html:not(.js) .fb { display: none; }
   .soejler { height: 240px; }
 }
 @media (max-width: 560px) {
+  .vej { grid-template-columns: 1fr; }
+  .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; gap: 10px; }
+  .bento__stor, .bento__foto, .bento__felt--moerk, .bento__felt--link { grid-column: 1 / -1; grid-row: auto; }
+  .bento__felt { min-height: 120px; padding: 18px; }
+  .bento__felt b { font-size: 1.7rem; }
+  .bento__felt--moerk, .bento__felt--link { gap: 14px; }
+  .hero__chips { grid-template-columns: 1fr; }
+  .hero__chips li { grid-template-columns: auto 1fr; align-items: center; gap: 12px; padding: 10px 14px; }
   .maerke__ord { font-size: 1rem; }
-  .meritter li { padding-block: 20px; }
-  .saeson__tal { grid-template-columns: 1fr 1fr; }
-  .saeson__tal div:nth-child(odd) { padding-left: 0; border-left: 0; }
-  .saeson__tal div:nth-child(even) { padding-left: 14px; border-left: 1px solid var(--linje); }
-  .saeson__tal div:nth-child(n + 3) { margin-top: 16px; }
   .hestekort dl { grid-template-columns: repeat(2, auto); justify-content: start; gap: 12px 32px; }
   .kpi { grid-template-columns: repeat(2, 1fr); }
   .kpi div:nth-child(odd) { padding-left: 0; border-left: 0; }

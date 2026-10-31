@@ -457,19 +457,6 @@ const hestegruppe = (titel, heste) => (heste.length ? `
       </ul>
     </div>` : '');
 
-// Meritbåndet under heltebilledet.
-const meritter = () => `
-<section class="meritter" aria-label="Meritter">
-  <div class="wrap">
-    <ul>
-      <li data-vis><b>2018</b><span>Europamester for travjockeys</span></li>
-      <li data-vis style="--i:1"><b>61</b><span>sejre som catchdriver i USA</span></li>
-      <li data-vis style="--i:2"><b>GP</b><span>Jydsk 4-årings Grand Prix 2025 med Kingston</span></li>
-      <li data-vis style="--i:3"><b>1.12.25</b><span>selvstændig træner på Skive Trav</span></li>
-    </ul>
-  </div>
-</section>`;
-
 const tidslinje = () => `<ol class="vej">${VEJEN.map(([naar, titel, tekst], i) => `
       <li data-vis style="--i:${i}"><time>${naar}</time><h3>${titel}</h3><p>${tekst}</p></li>`).join('')}
     </ol>`;
@@ -585,32 +572,40 @@ const foelg = (fb = []) => (SITE.facebook || SITE.instagram || fb.length ? `
 
 const forside = (o, data) => `
 <section class="hero">
-  <div class="hero__tekst">
-    ${etiket('Professionel travtræner · Skive Trav')}
-    <h1>Kasper<br>Foget</h1>
-    <ul class="hero__intro">${SITE.intro.map((s) => `<li>${s}</li>`).join('')}</ul>
-    <p class="hero__indled">Europamester for travjockeys, catchdriver i USA og siden 1. december 2025 selvstændig træner med ${o.heste.length} heste i Stald E på Skive Trav.</p>
-    <p class="valg">${knap('kontakt/', `Kontakt ${SITE.fornavn}`)} ${knap('heste/', 'Se hestene', 'knap--kant')}</p>
-  </div>
-  <figure class="hero__foto">${billede('hero', 'Travløb i aftensol på Skive Trav', { sizes: '(min-width: 901px) 50vw, 100vw', lazy: false })}</figure>
-</section>
-${meritter()}
-
-<section class="sek">
   <div class="wrap">
-    <div class="saeson" data-vis>
-      <div class="saeson__hoved">
+    <div class="hero__kort">
+      <figure class="hero__foto">${billede('hero', 'Travløb i aftensol på Skive Trav', { sizes: '(min-width: 1320px) 1240px, 96vw', lazy: false })}</figure>
+      <div class="hero__tekst">
+        ${etiket('Professionel travtræner · Skive Trav')}
+        <h1>Kasper Foget</h1>
+        <p class="hero__indled">Europamester for travjockeys, catchdriver i USA og siden 1. december 2025 selvstændig træner med ${o.heste.length} heste i Stald E på Skive Trav.</p>
+        <p class="valg">${knap('kontakt/', `Kontakt ${SITE.fornavn}`)} ${knap('heste/', 'Se hestene', 'knap--glas')}</p>
+      </div>
+      <ul class="hero__chips" aria-label="Meritter">
+        <li><b>2018</b>Europamester for travjockeys</li>
+        <li><b>61</b>sejre som catchdriver i USA</li>
+        <li><b>2025</b>Jydsk 4-årings Grand Prix</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sek sek--bento">
+  <div class="wrap">
+    <div class="bento">
+      <div class="bento__stor" data-vis>
         ${etiket(`Sæson ${o.saeson.aar}`)}
         <h2>Første sæson med egen stald.</h2>
-        <p>Opdateret ${o.opdateret} fra Dansk Hestevæddeløb.</p>
+        <p class="bento__tal"><b>${o.saeson.sejre}</b>sejre som træner på ${o.saeson.starter} starter</p>
+        <p class="bento__note">Opdateret ${o.opdateret} fra Dansk Hestevæddeløb.</p>
       </div>
-      <dl class="saeson__tal">
-        <div><dt>Starter som træner</dt><dd>${o.saeson.starter}</dd></div>
-        <div><dt>Sejre som træner</dt><dd>${o.saeson.sejre}</dd></div>
-        <div><dt>Sejrsprocent</dt><dd>${o.saeson.procent}<small>%</small></dd></div>
-        <div><dt>Indkørt</dt><dd>${nf(o.saeson.praemier)}<small>kr.</small></dd></div>
-        <div class="saeson__kusk"><dt>Sejre som kusk</dt><dd>${o.kusk.sejre}<small>af ${o.kusk.starter}</small></dd></div>
-      </dl>
+      <div class="bento__felt" data-vis style="--i:1"><b>${o.saeson.procent}<small>%</small></b><span>sejrsprocent</span></div>
+      <div class="bento__felt" data-vis style="--i:2"><b>${nf(o.saeson.praemier)}<small>kr.</small></b><span>indkørt</span></div>
+      <div class="bento__felt bento__felt--groen" data-vis style="--i:3"><b>${o.kusk.sejre}</b><span>sejre som kusk på ${o.kusk.starter} starter</span></div>
+      <div class="bento__felt bento__felt--mint" data-vis style="--i:4"><b>${o.heste.length}</b><span>heste i Stald E – ${o.ustartede.length} unge på vej</span></div>
+      <figure class="bento__foto" data-vis style="--i:2">${billede('jacobite', 'Jacobite i løb med Kasper Foget i sulkyen', { sizes: '(min-width: 901px) 50vw, 92vw' })}<figcaption>Jacobite · Foto: Ole Hindby</figcaption></figure>
+      <div class="bento__felt bento__felt--moerk" data-vis style="--i:3"><span>Næste start</span>${o.kommende.length ? `<b class="bento__hest">${esc(o.kommende[0].hest)}</b><span>${ugedag(o.kommende[0].dato)} ${kortDato(o.kommende[0].dato)} · ${esc(bane(o.kommende[0].bane))}</span>` : '<b class="bento__hest">Ingen startmeldte</b><span>Nye startlister på Travinfo</span>'}</div>
+      <a class="bento__felt bento__felt--link" href="${R}om-kasper/" data-vis style="--i:4"><span>Historien</span><b class="bento__hest">Fra Skive til USA – og hjem igen</b><span class="bento__pil">Læs om Kasper ${pil}</span></a>
     </div>
   </div>
 </section>
