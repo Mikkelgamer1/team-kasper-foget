@@ -1,5 +1,5 @@
 {
- "opdateret": "2026-11-08T11:14:24.089Z",
+ "opdateret": "2026-11-09T12:46:42.115Z",
  "traener": {
   "foedt": 1993,
   "hjemmebane": "Skive Trav",
@@ -47,12 +47,12 @@
  "kuskStatistik": [
   {
    "aar": 2026,
-   "starter": 321,
+   "starter": 323,
    "sejre": 43,
-   "toer": 25,
+   "toer": 26,
    "treer": 41,
    "procent": 13,
-   "praemier": 1095350
+   "praemier": 1105350
   },
   {
    "aar": 2025,
@@ -132,45 +132,6 @@
    "rekord": ""
   },
   {
-   "id": 658882,
-   "navn": "Nala Keka K K",
-   "alder": 2,
-   "koen": "Hoppe",
-   "foedt": "2024-04-14",
-   "far": "Third Shift (US)",
-   "mor": "Gennah Sisa",
-   "starter": 0,
-   "placeringer": "0-0-0",
-   "praemier": 0,
-   "rekord": ""
-  },
-  {
-   "id": 659456,
-   "navn": "Neo Wood Keka K K",
-   "alder": 2,
-   "koen": "Hoppe",
-   "foedt": "2024-04-24",
-   "far": "Fabulous Wood (FR)",
-   "mor": "Iponema (US)",
-   "starter": 0,
-   "placeringer": "0-0-0",
-   "praemier": 0,
-   "rekord": ""
-  },
-  {
-   "id": 658639,
-   "navn": "Ninja",
-   "alder": 2,
-   "koen": "Hoppe",
-   "foedt": "2024-06-18",
-   "far": "Fabulous Wood (FR)",
-   "mor": "Alongcameaspider",
-   "starter": 0,
-   "placeringer": "0-0-0",
-   "praemier": 0,
-   "rekord": ""
-  },
-  {
    "id": 658591,
    "navn": "Nothing Toulouse",
    "alder": 2,
@@ -197,13 +158,26 @@
    "rekord": ""
   },
   {
-   "id": 660579,
-   "navn": "Olivia Bakkebo",
+   "id": 660636,
+   "navn": "Odine Sotto",
    "alder": 1,
    "koen": "Hoppe",
-   "foedt": "2025-04-19",
-   "far": "Laughing Stock (SE)",
-   "mor": "Bella Donna",
+   "foedt": "2025-04-18",
+   "far": "Southwind Frank (US)",
+   "mor": "Iowa Sund (SE)",
+   "starter": 0,
+   "placeringer": "0-0-0",
+   "praemier": 0,
+   "rekord": ""
+  },
+  {
+   "id": 660234,
+   "navn": "Olivia Tinghøj",
+   "alder": 1,
+   "koen": "Hoppe",
+   "foedt": "2025-06-09",
+   "far": "Googoo Gaagaa (US)",
+   "mor": "Corinna Tinghøj",
    "starter": 0,
    "placeringer": "0-0-0",
    "praemier": 0,
