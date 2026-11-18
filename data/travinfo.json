@@ -1,5 +1,5 @@
 {
- "opdateret": "2026-11-17T13:15:52.117Z",
+ "opdateret": "2026-11-18T12:58:50.201Z",
  "traener": {
   "foedt": 1993,
   "hjemmebane": "Skive Trav",
@@ -92,6 +92,19 @@
   }
  ],
  "heste": [
+  {
+   "id": 662425,
+   "navn": "Bailando (SE)",
+   "alder": 1,
+   "koen": "Hingst",
+   "foedt": "2025-05-28",
+   "far": "San Moteur (SE)",
+   "mor": "Que Sera Sera (SE)",
+   "starter": 0,
+   "placeringer": "0-0-0",
+   "praemier": 0,
+   "rekord": ""
+  },
   {
    "id": 649374,
    "navn": "Jacobite",
