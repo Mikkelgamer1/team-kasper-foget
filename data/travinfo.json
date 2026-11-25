@@ -1,5 +1,5 @@
 {
- "opdateret": "2026-11-24T14:48:14.997Z",
+ "opdateret": "2026-11-25T14:14:27.916Z",
  "traener": {
   "foedt": 1993,
   "hjemmebane": "Skive Trav",
@@ -145,6 +145,19 @@
    "rekord": ""
   },
   {
+   "id": 661294,
+   "navn": "Noni",
+   "alder": 2,
+   "koen": "Hingst",
+   "foedt": "2024-05-01",
+   "far": "Broad Bahn (US)",
+   "mor": "Lorelei Marie (SE)",
+   "starter": 0,
+   "placeringer": "0-0-0",
+   "praemier": 0,
+   "rekord": ""
+  },
+  {
    "id": 658591,
    "navn": "Nothing Toulouse",
    "alder": 2,
@@ -152,19 +165,6 @@
    "foedt": "2024-06-05",
    "far": "Zola Boko (SE)",
    "mor": "Tulle Toulouse",
-   "starter": 0,
-   "placeringer": "0-0-0",
-   "praemier": 0,
-   "rekord": ""
-  },
-  {
-   "id": 660279,
-   "navn": "Oddity Hestekjær",
-   "alder": 1,
-   "koen": "Hingst",
-   "foedt": "2025-05-28",
-   "far": "Cash Gamble (SE)",
-   "mor": "Facebook",
    "starter": 0,
    "placeringer": "0-0-0",
    "praemier": 0,
